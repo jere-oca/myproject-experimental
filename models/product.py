@@ -1,6 +1,6 @@
 from utils.db import db  
 
-class Productos(db.Model):
+class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     marca = db.Column(db.String(100), nullable=False)
