@@ -8,6 +8,8 @@ source .venv/bin/activate
 
 # instalar requirements
 
+pip install flask flask-sqlalchemy flask-migrate mysql-connector-python
+
 pip install -r requirements.txt
 
 # copiar a requirements.txt
