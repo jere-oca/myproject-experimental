@@ -13,3 +13,9 @@ pip install -r requirements.txt
 # copiar a requirements.txt
 
 pip freeze > requirements.txt
+
+# Migrations
+
+flask db init
+flask db migrate -m "Create Productos and Marcas tables"
+flask db upgrade
