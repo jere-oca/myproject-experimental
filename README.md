@@ -1,4 +1,4 @@
-# myproject
+# 4ctrl
 
 Este proyecto es una aplicación de gestión de stock, a través de bases de datos relacionales, y cuenta con una interfaz web para su uso.
 

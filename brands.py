@@ -18,8 +18,6 @@ def check_marca(nombre, cantidad):
         return False
     return True
 
-
-
 @marcas.route('/', methods=['GET'])
 def ver_marcas():
     
