@@ -1,21 +1,31 @@
 # Crear env
 
-python3 -m venv .venv
+python3 -m venv env
 
 # activar env
 
-source .venv/bin/activate
+source env/bin/activate
 
-# instalar requirements
-
-pip install flask flask-sqlalchemy flask-migrate mysql-connector-python
-
-# copiar a requirements.txt
+# copiar requirements
 
 pip freeze > requirements.txt
 
-# Migrations
+# instalar requirements
 
-flask db init
-flask db migrate -m "Create Productos and Marcas tables"
-flask db upgrade
+pip install -r requirements.txt
+
+
+
+
+# Instalar XAMPP
+
+https://inteligentedigital.com/como-instalar-xampp-en-ubuntu-22-04-paso-a-paso/
+
+https://www.apachefriends.org/es/index.html
+
+https://www.apachefriends.org/es/faq_linux.html
+
+# Iniciar XAMPP
+
+$ cd /opt/lampp
+$ sudo ./manager-linux-x64.run

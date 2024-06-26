@@ -1,5 +1,6 @@
+# routes/marcas.py
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from models.Marca import Marca
+from models.product import Marca
 from utils.db import db
 
 marcas = Blueprint('marcas', __name__)
@@ -18,13 +19,16 @@ def check_marca(nombre, cantidad):
         return False
     return True
 
+
+
 @marcas.route('/', methods=['GET'])
 def ver_marcas():
+    
     marcas = Marca.query.all()
     return render_template('marcas.html', marcas=marcas)
 
 @marcas.route('/add-marca', methods=['GET', 'POST'])
-def agregar_marca():
+def add_marca():
     if request.method == 'POST':
         nombre = request.form['nombre']
         cant = request.form['cant_art']
