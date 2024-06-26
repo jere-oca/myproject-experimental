@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
-from models.product import Productos,Marca
-from app import db
+from models.Marca import Marca
+from models.Producto import Producto
+from utils.db import db
 
 products = Blueprint('products', __name__)
 
@@ -9,9 +10,6 @@ def get_marcas():
     query = request.args.get('q', '')
     marcas = Marca.query.filter(Marca.nombre.ilike(f'%{query}%')).all()
     return jsonify([{'nombre': marca.nombre} for marca in marcas])
-
-
-
 
 def check(nombre, marca, precio):
     if not isinstance(nombre, str) or not nombre.strip():
@@ -33,7 +31,6 @@ def check(nombre, marca, precio):
 
     return True
 
-
 @products.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -46,9 +43,8 @@ def login():
 
 @products.route('/home')
 def home():
-    productos = Productos.query.all()
+    productos = Producto.query.all()
     return render_template("index.html", productos=productos)
-
 
 @products.route('/add_products', methods=['GET', 'POST'])
 def add_product():
@@ -64,7 +60,7 @@ def add_product():
             return redirect(url_for('products.add_product'))
 
         if check(nombre, marca, precio):
-            new_product = Productos(nombre=nombre, marca=marca, precio=float(precio))
+            new_product = Producto(nombre=nombre, marca=marca, precio=float(precio))
             db.session.add(new_product)
             db.session.commit()
             flash('Producto agregado con éxito')
@@ -80,7 +76,7 @@ def add_product():
 
 @products.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_product(id):
-    product = Productos.query.get_or_404(id)
+    product = Producto.query.get_or_404(id)
     if request.method == 'POST':
         nombre = request.form['nombre']
         marca = request.form['marca']
@@ -90,7 +86,6 @@ def edit_product(id):
         if not marca_existe:
             flash('La marca seleccionada no existe')
             return redirect(url_for('products.home'))
-
 
         if check(nombre, marca, precio):
             product.nombre = nombre
@@ -106,7 +101,7 @@ def edit_product(id):
 
 @products.route('/delete/<int:id>', methods=['GET'])
 def delete_product(id):
-    product = Productos.query.get_or_404(id)
+    product = Producto.query.get_or_404(id)
     db.session.delete(product)
     db.session.commit()
     flash('Producto eliminado con éxito')

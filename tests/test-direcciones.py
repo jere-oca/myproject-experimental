@@ -3,7 +3,7 @@ from flask import Flask, url_for
 from flask_testing import TestCase
 
 # Importa la aplicación Flask
-from app.run import app # Reemplaza 'tu_aplicacion' con el nombre de tu módulo de Flask
+from app.run import app
 
 class TestRedirecciones(TestCase):
 
@@ -26,4 +26,3 @@ class TestRedirecciones(TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

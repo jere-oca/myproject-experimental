@@ -1,6 +1,5 @@
-# routes/marcas.py
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from models.product import Marca
+from models.Marca import Marca
 from utils.db import db
 
 marcas = Blueprint('marcas', __name__)
@@ -18,8 +17,6 @@ def check_marca(nombre, cantidad):
         flash('La cantidad de artículos debe ser un número entero válido', 'error')
         return False
     return True
-
-
 
 @marcas.route('/', methods=['GET'])
 def ver_marcas():

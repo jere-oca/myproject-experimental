@@ -7,8 +7,8 @@ def create_app():
 
     # Parámetros de la base de datos
     user = 'root'
-    password = 'admin'
-    table = 'productsdb'
+    password = 'password'
+    table = 'products'
 
     # Configuración de SQLAlchemy (base de datos)
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{user}:{password}@localhost/{table}'
